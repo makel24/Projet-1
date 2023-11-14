@@ -16,6 +16,49 @@ def analyser_commande():
     return args
 
 analyser_commande()
+
+
+liste_date = []
+
+
+from datetime import date
+import requests
+import json
+
+
+def produire_historique(titre, début, fin, valeur):
+    for symbole in titre:
+        liste_date = []
+
+
+    url = f'https://pax.ulaval.ca/action/{symbole}/historique/'
+    params = {'début': str(début), 'fin': str(fin)}
+    réponse = requests.get(url=url, params=params)
+    réponse = json.loads(réponse.text)
+    
+
+    for symbole in titre:
+
+
+   
+
+
+
+arguments = analyser_commande()
+liste_symbole = arguments.symbole
+date_début = arguments.début
+date_fin = arguments.fin
+liste_valeur = arguments.valeur
+liste_historique = produire_historique(liste_symbole, date_début, date_fin, liste_valeur)
+
+
+
+
+
+    
+
+
+
     
 
 
