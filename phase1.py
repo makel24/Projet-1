@@ -29,6 +29,7 @@ import json
 def produire_historique(titre, début, fin, valeur):
     for symbole in titre:
         liste_date = []
+      
 
 
     url = f'https://pax.ulaval.ca/action/{symbole}/historique/'
