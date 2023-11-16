@@ -35,10 +35,12 @@ def produire_historique(titre, début, fin, valeur):
             while date_actuelle <= fin:
                 date_actuelle = début 
                 if date_actuelle.weekday() < 5:
-                    liste_date.append((date_actuelle, réponse['historique'][date_] valeur_date))
-                        valeur_date = réponse["historique"][date_str][valeur]
-                        liste_historique.append((date_actuelle, valeur_date))
-                        date_actuelle += datetime.timedelta(days=1)
+                    liste_date.append((date_actuelle, réponse['historique'][date_actuelle.fromisoformat()][valeur.fromisoformat()]))
+            date_actuelle += datetime.timedelta(days=1)
+            liste_historique.append(liste_date)
+        else:
+            print("Entrée non-valide ; Ce symbole est inexistant")
+            sys.exit(1)
                
     return liste_historique 
                 
@@ -46,11 +48,10 @@ def produire_historique(titre, début, fin, valeur):
      
 
 def afficher_historique(symbole_affiche, début_affiche, fin_affiche, valeur_affiche):
-    print(f'titre={symbole_affiche}: début={début_affiche}: fin={fin_affiche}: valeur={valeur_affiche}')
-    for j in range(len(valeur)):
-        date, valeur = valeur[j]
-        print(f'({date}, {valeur})', end=" ")
-        print()  
+    liste_tuples = produire_historique(symbole_affiche, début_affiche, fin_affiche, valeur_affiche)
+    for i, symbole in enumerate(symbole_affiche):
+        print(f'titre={symbole_affiche}: début={début_affiche}: fin={fin_affiche}: valeur={valeur_affiche}')
+        print(liste_tuples[i])
        
         
 
