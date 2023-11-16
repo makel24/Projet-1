@@ -1,9 +1,10 @@
 import argparse
 import datetime
-from datetime import date
+from datetime import date, timedelta
 import requests
 import json
-from datetime import timedelta
+import sys
+
 
 
 def analyser_commande():
@@ -23,21 +24,18 @@ analyser_commande()
 def produire_historique(titre, début, fin, valeur):
     
     liste_historique = []
-    
-    url = f'https://pax.ulaval.ca/action/{symbole}/historique/'
-    params = {'début': str(début), 'fin': str(fin)}
-    réponse = requests.get(url=url, params=params)
-    réponse = json.loads(réponse.text)
-    
     for symbole in titre:
         liste_date = []
-        date_actuelle = début
-        while date_actuelle <= fin:
-            if "message d/'erreur" not in réponse:
+        url = f'https://pax.ulaval.ca/action/{symbole}/historique/'
+        params = {'début': str(début), 'fin': str(fin)}
+        réponse = requests.get(url=url, params=params)
+        réponse = json.loads(réponse.text)
+        if "message d'erreur" not in réponse:
+            date_actuelle = début
+            while date_actuelle <= fin:
                 date_actuelle = début 
-                if date_actuelle.weekday() > 5:
-                    date_str = date_actuelle.strftime( '%Y-%m-%d')
-                    if date_str in réponse["historique"]:
+                if date_actuelle.weekday() < 5:
+                    liste_date.append((date_actuelle, réponse['historique'][date_] valeur_date))
                         valeur_date = réponse["historique"][date_str][valeur]
                         liste_historique.append((date_actuelle, valeur_date))
                         date_actuelle += datetime.timedelta(days=1)
