@@ -45,7 +45,7 @@ def analyser_commande():
         description="Extraction de valeurs historiques pour un ou plusieurs symboles boursiers"
         )
     parser.add_argument(
-        '-d', '--début', metavar='DATE', dest= 'début', type=datetime.date.fromisoformat, 
+        '-d', '--début', metavar='DATE', dest= 'debut', type=datetime.date.fromisoformat, 
         help="Date recherchée la plus ancienne (format: AAAA-MM-JJ)"
         )
     parser.add_argument(
