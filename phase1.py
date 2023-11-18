@@ -104,7 +104,7 @@ def produire_historique(titre, debut, fin, valeur):
     return liste_historique
 arguments = analyser_commande()
 liste_symbole = arguments.symbole
-date_debut = arguments.début
+date_debut = arguments.debut
 date_fin = arguments.fin
 liste_valeur = arguments.valeur
 
