@@ -68,6 +68,19 @@ def analyser_commande():
 analyser_commande()
 
 def produire_historique(titre, debut, fin, valeur):
+    """
+    Récupère l'historique des valeurs boursières pour les symboles choisis.
+    Elle accepte les arguments suivants:
+    
+    -titre (str): Liste des symboles boursiers selon l'historique.
+    -debut (datetime): DAte de début de la période d'extraction.
+    -fin (datetime): Date de fin de la période d'extraction.
+    -valeur (str): La valeur boursière à extraire parmi 
+    ['fermeture', 'ouverture', 'min', 'max', 'volume']
+    
+    Returns:
+    Une liste de tuples (date, valeur) correspondant à l'historique demandé
+    """
     liste_historique = []
     for symbole in titre:
         liste_date = []
