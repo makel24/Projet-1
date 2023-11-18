@@ -73,7 +73,7 @@ def produire_historique(titre, debut, fin, valeur):
     Elle accepte les arguments suivants:
     
     -titre (str): Liste des symboles boursiers selon l'historique.
-    -debut (datetime): DAte de début de la période d'extraction.
+    -debut (datetime): Date de début de la période d'extraction.
     -fin (datetime): Date de fin de la période d'extraction.
     -valeur (str): La valeur boursière à extraire parmi 
     ['fermeture', 'ouverture', 'min', 'max', 'volume']
@@ -109,6 +109,19 @@ date_fin = arguments.fin
 liste_valeur = arguments.valeur
 
 def afficher_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affiche):
+    """
+    Affiche les valeurs historiques des valeurs bourisères selon la période et le symbole.
+    
+    Les arguments sont:
+    -symbole_affiche: Liste des symboles boursiers selon l'historique.
+    -debut_affiche: Date de début de la période d'extraction.
+    -fin_affiche: Date de fin de la période d'extraction.
+    -valeur_affiche: La valeur boursière à extraire parmi 
+    ['fermeture', 'ouverture', 'min', 'max', 'volume']
+    
+    Returns:
+    None
+    """
     liste_tuples = produire_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affiche)
     for i,symbole in enumerate(symbole_affiche):
         print(
