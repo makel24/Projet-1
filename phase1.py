@@ -21,6 +21,25 @@ import requests
 
 
 def analyser_commande():
+    """
+    Analyse les arguments de la ligne de commande pour l'extraction 
+    de valeur historique ou plusieurs symboles boursiers
+    Cette fonction va utiliser le module argparse pour analyser les valeurs des arguments suivant:
+    
+    Arguments optionnels:
+    - 'd DATE', '--debut DATE': Date recherchée la plus ancienne (format: AAAA-MM-JJ)
+    - 'f DATE', '--fin DATE': Date rechercée la plus récente (format: AAAA-MM-JJ)
+    - 'v {fermeture,ouverture,min,max,volume}, --valeur {fermeture,ouverture,min,max,volume}
+      La valeur désirée (par defaut: fermeture)
+        
+    Argument positionnel:
+    - 'symbole' : Nom du symbole boursier
+    Returns:
+    Un objet Namespace tel que retourné par parser.parse_args(). 
+    Cet objet aura l'attribut «symboles» représentant la liste des symboles à traiter, 
+    et les attributs «début», «fin» et «valeur»
+    associés aux arguments optionnels de la ligne de commande.
+    """
 
     parser = argparse.ArgumentParser(
         description="Extraction de valeurs historiques pour un ou plusieurs symboles boursiers"
@@ -30,8 +49,8 @@ def analyser_commande():
         help="Date recherchée la plus ancienne (format: AAAA-MM-JJ)"
         )
     parser.add_argument(
-        '-f', '--fin', metavar='DATE', dest='fin', default=datetime.date.today(), type=date.fromisoformat, 
-        help="Date recherchée la plus récente (format: AAAA-MM-JJ)"
+        '-f', '--fin', metavar='DATE', dest='fin', default=datetime.date.today(), 
+        type=date.fromisoformat, help="Date recherchée la plus récente (format: AAAA-MM-JJ)"
         )
     parser.add_argument(
         '-v', '--valeur', dest='valeur', choices=['fermeture', 'ouverture', 'min', 'max', 'volume'], 
@@ -49,7 +68,6 @@ def analyser_commande():
 analyser_commande()
 
 def produire_historique(titre, debut, fin, valeur):
-    
     liste_historique = []
     for symbole in titre:
         liste_date = []
@@ -71,7 +89,6 @@ def produire_historique(titre, debut, fin, valeur):
             print("Entrée non-valide ; Ce symbole est inexistant")
             sys.exit(1)
     return liste_historique
-                
 arguments = analyser_commande()
 liste_symbole = arguments.symbole
 date_debut = arguments.début
@@ -82,8 +99,8 @@ def afficher_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affi
     liste_tuples = produire_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affiche)
     for i,symbole in enumerate(symbole_affiche):
         print(
-        f'titre={symbole_affiche}: début={debut_affiche}: 
-        fin={fin_affiche}: valeur={valeur_affiche}'
+        f'titre={symbole_affiche}: début={debut_affiche}:'
+        f'fin={fin_affiche}: valeur={valeur_affiche}'
         )
         print(liste_tuples[i])
 afficher_historique(liste_symbole, date_debut, date_fin, liste_valeur)
