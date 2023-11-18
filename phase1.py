@@ -123,7 +123,7 @@ def afficher_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affi
     None
     """
     liste_tuples = produire_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affiche)
-    for i,symbole in enumerate(symbole_affiche):
+    for i in enumerate(symbole_affiche):
         print(
         f'titre={symbole_affiche}: début={debut_affiche}:'
         f'fin={fin_affiche}: valeur={valeur_affiche}'
