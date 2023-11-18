@@ -129,4 +129,4 @@ def afficher_historique(symbole_donnee, debut_affiche, fin_affiche, valeur_affic
         f' début={debut_affiche}, fin={fin_affiche}'
         )
         print(liste_tuples[i])
-afficher_historique(liste_symbole, date_debut, date_fin, liste_valeur) 
+afficher_historique(liste_symbole, date_debut, date_fin, liste_valeur)
