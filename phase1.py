@@ -108,7 +108,7 @@ date_debut = arguments.debut
 date_fin = arguments.fin
 liste_valeur = arguments.valeur
 
-def afficher_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affiche):
+def afficher_historique(symbole_donnee, debut_affiche, fin_affiche, valeur_affiche):
     """
     Affiche les valeurs historiques des valeurs bourisères selon la période et le symbole.
     
@@ -122,8 +122,8 @@ def afficher_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affi
     Returns:
     None
     """
-    liste_tuples = produire_historique(symbole_affiche, debut_affiche, fin_affiche, valeur_affiche)
-    for i in enumerate(symbole_affiche):
+    liste_tuples = produire_historique(symbole_donnee, debut_affiche, fin_affiche, valeur_affiche)
+    for i, symbole_affiche in enumerate(symbole_donnee):
         print(
         f'titre={symbole_affiche}: début={debut_affiche}:'
         f'fin={fin_affiche}: valeur={valeur_affiche}'
